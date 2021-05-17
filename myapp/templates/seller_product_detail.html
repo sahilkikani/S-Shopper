@@ -1,0 +1,56 @@
+{% extends 'seller_header.html'%}
+{% load static %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+	
+		<!--features_items-->
+		<div class="collection_section layout_padding">
+			<div class="container">
+				<h2 class="title text-center">My Products</h2>
+			</div>
+		</div>
+		
+		<div class="layout_padding_section layout_padding">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-3">		
+						<div class="best_shoes">
+							<B>{{product.product_brand}} : {{product.product_category}}</B>
+			
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="{{product.product_image.url}}" height="300px" width="300px" alt="">
+						<div>
+							<h2>Rs :{{product.product_price}}</h2>
+						</div>
+						<div>
+							<p>Product description : {{product.product_description}}</p>&nbsp;
+						</div>
+						<div>
+							<p>Product size : {{product.product_size}}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</div>
+						<div>
+							<p>Product color : {{product.product_color}}</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						</div>
+						<br>
+							<a href="{% url 'seller_edit_product' pk=product.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-edit"></i>Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-edit"></i>Delete</a>		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	</section>
+	<script src="{% static 'js/jquery.js'%}"></script>
+	<script src="{% static 'js/bootstrap.min.js'%}"></script>
+	<script src="{% static 'js/jquery.scrollUp.min.js'%}"></script>
+	<script src="{% static 'js/price-range.js'%}"></script>
+	<script src="{% static 'js/jquery.prettyPhoto.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>
+</body>
+</html>
+{% endblock %}

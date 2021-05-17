@@ -1,0 +1,38 @@
+{% extends 'header.html'%}
+{% load static %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+	
+	
+	
+
+						<h2 class="title text-center">Features Items</h2>
+						{% for i in order_carts %}
+						<div class="col-sm-2">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{{i.product.product_image.url}}" height="300px" width="300px" alt="" />
+											<h3>Amount Paid Rs. {{i.total_price}}</h3><br>
+											<p>Easy Polo Black Edition</p>
+											<a href="{% url 'user_product_detail' pk=i.product.pk%}" class="btn btn-info"><i></i>More Details</a>
+										</div>
+									</div>
+									<div class="choose">	
+									</div>
+								</div>
+							</div>
+						</div>
+							{% endfor %}
+						
+						
+					</div><!--/recommended_items-->
+					
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>
+{% endblock %}

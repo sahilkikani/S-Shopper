@@ -1,0 +1,88 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block header %}
+<html lang="en">
+<head>
+    
+</head><!--/head-->
+
+<body>	
+	<!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-sm-offset-4">
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+						{% if msg %}
+                        <div class="alert alert-danger" role="alert">{{msg}}</div>
+                        {% endif %} 
+						<form name="signup" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+							{% csrf_token %}
+
+							
+							<p>	<input type="radio" name="usertype" value="user">&nbsp;User &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="usertype" value="seller">&nbsp;Seller &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</p>
+							<div class="form-group">
+								<input type="text" placeholder="Fisrt Name" name="fname" required="required">
+							</div>
+							<div class="form-group">
+								<input type="text" placeholder="Last Name" name="lname" required="required">
+							</div>
+							<div class="form-group">
+								<input type="text" placeholder="Mobile" name="mobile" required="required">
+							</div>
+							<div class="form-group">
+								<input type="email" placeholder="Email Address" name="email" id="email" required="required">
+							</div>
+							<div class="form-group">
+								<span id="email_error"></span>
+							</div>
+							<div class="form-group">
+								<input type="password" placeholder="Password" name="password" required="required">
+							</div>
+							<div class="form-group">
+								<input type="password" placeholder="Confirm password" name="cpassword" required="required">
+							</div>
+							<div class="form-group">
+								<textarea type="text" placeholder="Address" name="address" required="required"></textarea>
+							</div>
+							<div class="form-group">
+								<input type="file" placeholder="Profile Picture" name="image" required="required">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="signup">Signup</button>
+							</div>
+						</form>
+						<div>
+						Already Registered?<a href="{% url 'login'%}">Click Here</a>To Login
+						</div>
+						<br>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+	<script>
+		$("#email").change(function () {
+
+			var email = $(this).val();
+
+			$.ajax({
+				url:'/ajax/signup_validate_email/',
+				data: {'email':email},
+				dataType:'json',
+				success:function(data){
+					if (data.is_taken){
+						$('#email_error').html("Email Already Registered");
+					}
+					
+				}
+			});
+		});
+	
+	</script>	
+</body>
+</html>
+{% endblock %}

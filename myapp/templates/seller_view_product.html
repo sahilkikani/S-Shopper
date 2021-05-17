@@ -1,0 +1,45 @@
+{% extends 'seller_header.html'%}
+{% load static %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+	
+		<!--features_items-->
+		<div class="collection_section layout_padding">
+			<div class="container">
+				<h2 class="title text-center">My Products</h2>
+			</div>
+		</div>
+		
+		<div class="layout_padding_section layout_padding">
+			<div class="container">
+				<div class="row">
+					{% for i in product %}
+					<div class="col-sm-3">		
+						<div class="best_shoes">
+							<B>{{i.product_category}}</B>
+			
+			<div class="product-image-wrapper">
+				<div class="single-products">
+					<div class="productinfo text-center">
+						<img src="{{i.product_image.url}}" height="300px" width="300px" alt="">
+						<h2>Rs {{i.product_price}}</h2>
+						<a href="{% url 'seller_edit_product' pk=i.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-edit"></i>Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="{% url 'seller_product_detail' pk=i.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-edit"></i>More Details</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="{% url 'seller_delete_product' pk=i.pk %}" class="btn btn-default add-to-cart"><i class="fa fa-edit"></i>Delete</a>		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</section>
+	<script src="{% static 'js/jquery.js'%}"></script>
+	<script src="{% static 'js/bootstrap.min.js'%}"></script>
+	<script src="{% static 'js/jquery.scrollUp.min.js'%}"></script>
+	<script src="{% static 'js/price-range.js'%}"></script>
+	<script src="{% static 'js/jquery.prettyPhoto.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>
+</body>
+</html>
+{% endblock %}

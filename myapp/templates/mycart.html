@@ -1,0 +1,79 @@
+{% extends 'header.html'%}
+{% load static %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+	<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+						</ol>
+						
+						
+	
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-16">
+						<div class="left-sidebar">
+						
+						
+				
+				<div class="col-sm-9 padding-right">
+
+					<div class="features_items"><!--features_items-->
+
+						<h2 class="title text-center">User Cart</h2>
+						<center>
+							{% if cart %}
+							<form name="chechout" method="post" action="{% url 'pay' %}">
+								{% csrf_token %}
+								<h3>Net Price For Chechout : {{net_price}}
+								<input type="hidden" name="amount" value="{{net_price}}">
+								<input type="submit" name="action" value="chechout">
+							</h3>
+							</form>
+							{% else %}
+							<h1>No Items In Cart</h1>
+							{% endif %}
+						</center>
+						{% for i in cart %}
+						<div class="col-sm-3">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{{i.product.product_image.url}}" height="300px" width="300px" alt="">
+
+											<h2>Rs. {{i.product.product_price}}</h2>
+											<p>{{i.product.product_brand}}</p>
+
+											<form name="change_qty" method="post" action="{% url 'change_qty' %}">
+												{% csrf_token %}
+												<input type="hidden" name="pk" value="{{i.pk}}">
+												<p>Quantity : <input type="number" name="qty" min="1" max="10" value="{{i.qty}}" onchange="this.form.submit();"></p>
+											</form>
+											
+											<p>Price : {{i.price}}</p>
+											<p>Total Price : {{i.total_price}}</p>
+											<a href="{% url 'user_product_detail' pk=i.product.pk%}" class="btn btn-info"><i></i>More Details</a>
+										</div>
+									</div>
+									<div class="choose">	
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/recommended_items-->
+	</div>
+</div>
+</div>
+</section>
+</body>
+</html>
+{% endblock %}

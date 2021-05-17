@@ -1,0 +1,53 @@
+{% extends 'header.html'%}
+{% load static %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+							<div class="container">
+								<div class="row">
+									<div class="col-sm-12">
+										<h2 class="title text-center">User Order</h2>
+												<center>
+														{% if cart %}
+														<form name="chechout" method="post" action="{% url 'pay' %}">
+															{% csrf_token %}
+															<h3>Net Price For Chechout : {{net_price}}
+																<input type="hidden" name="amount" value="{{net_price}}">
+																<input type="submit" name="action" value="chechout">
+															</h3>
+														</form>
+														{% else %}
+														<h1>No Items In Cart</h1>
+														{% endif %}
+												</center>
+												{% for i in transactions %}
+												<div class="container">
+													<div class="row">
+														<br>
+												<div class="col-sm-4" style= "color: red;  border-style: groove;">
+													<div class="productinfo text-center">
+														Order ID : {{i.order_id}}<br></br>
+														Date : {{i.made_on}}<br></br>
+														Amount : {{i.amount}}<br></br>
+														<a href="{% url 'user_order_details' pk=i.pk %}"><button class="btn btn-primary">Order Details</button></a>
+													</div>	
+													<br>									
+													</div>
+												</div>
+												<br>
+											</div>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!--/recommended_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+	
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'header.html'%}
+{% load static %}
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">	
+						<div class="container">
+							<div class="row">
+								<div class="col-sm-12 col-sm-offset-4">
+									<div class="col-sm-4">
+						<h2 class="title text-center">
+						<form name="user_product_search" method="post" action="{% url 'user_product_search' %}">
+							{% csrf_token %}
+							<input type="text" name="product_category">
+							<input type="submit" name="action" value="Search" class="btn btn-danger">
+						</form>
+						<br>
+						{% for i in products %}
+						<div class="col-sm-6">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{{i.product_image.url}}" height="300px" width="300px" alt="" />
+											<h2>Rs. {{i.product_price}}</h2>
+											<p>Easy Polo Black Edition</p>
+											<a href="{% url 'user_product_detail' pk=i.pk%}" class="btn btn-info"><i></i>More Details</a>
+										</div>
+
+									</div>
+									<div class="choose">	
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						
+						
+					
+	</section>
+	
+	
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block header %}
+<html lang="en">
+<head>
+    
+</head><!--/head-->
+
+<body>	
+	<!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-sm-offset-4">
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h3>New Edit Profile!</h3>
+						{% if msg %}
+     				 	<div class="alert alert-success" role="alert">{{msg}}</div>
+        				{% endif %}
+						<form name="signup" method="post" action="{% url 'user_edit_profile' %}" enctype="multipart/form-data">
+							{% csrf_token %}
+
+							<div class="form-group">
+								<input type="text" name="usertype" value="{{user.usertype}}" readonly="readonly">
+							</div>
+							<div class="form-group">
+								<input type="text" placeholder="Fisrt Name" name="fname" value="{{user.fname}}">
+							</div>
+							<div class="form-group">
+								<input type="text" placeholder="Last Name" name="lname" value="{{user.lname}}">
+							</div>
+							<div class="form-group">
+								<input type="number" placeholder="Mobile" name="mobile" value="{{user.mobile}}">
+							</div>
+							<div class="form-group">
+								<input type="email" placeholder="Email Address" name="email" value="{{user.email}}">
+							</div>
+							<div class="form-group">
+								<textarea type="text" placeholder="Address" name="address">{{user.address}}</textarea>
+							</div>
+							<div class="form-group">
+								<img src="{{user.image.url}}" width="100px" width="100px">
+							</div>
+							<div class="form-group">
+								<input type="file" placeholder="Profile Picture" name="image">
+							</div>
+							<div class="form-group">
+								<button type="submit" class="signup">Update Profile</button>
+							</div>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+		
+</body>
+</html>
+{% endblock %}
